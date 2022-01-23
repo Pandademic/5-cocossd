@@ -1,3 +1,3 @@
 function preload(){
-    img = loadImage('../../img/op2.jpg');
+    img = loadImage('op2.jpg');
 }
