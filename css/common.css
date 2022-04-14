@@ -4,4 +4,6 @@
 #top,#footer{
     float:center;
 } 
-
+.header{
+    width:100%;
+}
