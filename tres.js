@@ -1,4 +1,4 @@
-// I atha like 🍪's
+// I like 🍪's
 objectDetector= "";
 
 img = "";
@@ -14,8 +14,9 @@ function setup() {
     objectDetector=ml5.objectDetector('cocossd',modelLoaded); 
     document.getElementById('status').innerHTML = "Status : Detecting Objects";
 }
+/*
 function draw(){
-    image(video,0,0,380,380);//cover the canvas with image
+    image(img,0,0,380,380);//cover the canvas with image
     if(status!=""){
         r=random(255);
         g=random(255);
@@ -33,17 +34,18 @@ function draw(){
         }
     }
 }
+*/
 function modelLoaded(){
     console.log("Coco has arrived.Bus 165 with SS is running 30 minutes late! D is still asleep and may not arrive at all ! ");
     status=true;
-    objectDetector.detect(video,gotResult);
+    objectDetector.detect(img,gotResult);
 }
 
 
 function draw() {
   image(img, 0, 0, 640, 420);
 
-      if(status != "")
+  if(status == true)
       {
         for (var i = 0; i < objects.length; i++) {
           document.getElementById("status").innerHTML = "Status : Object Detected";
