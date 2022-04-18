@@ -3,7 +3,6 @@ objectDetector= "";
 
 img = "";
 objects = [];
-status = "";
 
 function preload(){
   img = loadImage('img/op3.jpg');
@@ -11,6 +10,7 @@ function preload(){
 function setup() { 
     canvas = createCanvas(380,380);
     canvas.center();
+    canvas.parent("canvas")
     objectDetector=ml5.objectDetector('cocossd',modelLoaded); 
     document.getElementById('status').innerHTML = "Status : Detecting Objects";
 }
@@ -36,26 +36,26 @@ function draw(){
 }
 */
 function modelLoaded(){
-    console.log("Coco has arrived.Bus 165 with SS is running 30 minutes late! D is still asleep and may not arrive at all ! ");
-    status=true;
-    objectDetector.detect(img,gotResult);
+  console.log("we have loaded!!!") 
+  objectDetector.detect(img,gotResult);
 }
 
 
 function draw() {
   image(img, 0, 0, 640, 420);
-
-  if(status == true)
-      {
-        for (var i = 0; i < objects.length; i++) {
-          document.getElementById("status").innerHTML = "Status : Object Detected";
+}
+function gotResult(error,results){
+  if(error){
+    console.error(error)// (!_!)
+  }
+  for (var i = 0; i < objects.length; i++) {
+      document.getElementById("status").innerHTML = "Status : Object Detected";
     
-          fill(255, 0, 0);
-          percent = floor(objects[i].confidence * 100);
-          text(objects[i].label + " " + percent + "%", objects[i].x + 15, objects[i].y + 15);
-          noFill();
-          stroke(255, 0, 0);
-          rect(objects[i].x, objects[i].y, objects[i].width, objects[i].height);
-        }
+      fill(255, 0, 0);
+      percent = floor(objects[i].confidence * 100);
+      text(objects[i].label + " " + percent + "%", objects[i].x + 15, objects[i].y + 15);
+      noFill();
+      stroke(255, 0, 0);
+      rect(objects[i].x, objects[i].y, objects[i].width, objects[i].height);
       }
 }
